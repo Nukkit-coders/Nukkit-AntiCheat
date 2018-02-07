@@ -28,11 +28,40 @@ import java.io.IOException;
  * ||||
  */
 public class AntiAutoAim extends Combat {
+    private NPC npc;
+
     public AntiAutoAim(Player player) {
         super(player);
         addDummy();
     }
-    private NPC npc;
+
+    private static byte[] image(String path) {
+        File file = new File(path);
+        BufferedImage image;
+        try {
+            image = ImageIO.read(file);
+        } catch (IOException var5) {
+            throw new RuntimeException(var5);
+        }
+        return parseBufferedImage(image);
+    }
+
+    private static byte[] parseBufferedImage(BufferedImage image) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        for (int y = 0; y < image.getHeight(); ++y) {
+            for (int x = 0; x < image.getWidth(); ++x) {
+                Color color = new Color(image.getRGB(x, y), true);
+                outputStream.write(color.getRed());
+                outputStream.write(color.getGreen());
+                outputStream.write(color.getBlue());
+                outputStream.write(color.getAlpha());
+            }
+        }
+
+        image.flush();
+        return outputStream.toByteArray();
+    }
 
     @Override
     public CheatType getCheatType() {
@@ -73,39 +102,17 @@ public class AntiAutoAim extends Combat {
         byte[] skin = image(AntiCheatAPI.getInstance().getMasterConfig().getSkinPath());
         NPC npc = new NPC(new Position(player.getX(), player.getY(), player.getZ(), player.getLevel()), skin, player);
         npc.setNameTag("");
-        npc.setScale(0.01F);
+        npc.setScale(0.0001F);
         this.npc = npc;
-    }
-
-    public void move(Player player){
-        npc.teleport(new Position(player.x,player.y+1,player.z,player.level));
-    }
-
-    private static byte[] image(String path){
-        File file = new File(path);
-        BufferedImage image;
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException var5) {
-            throw new RuntimeException(var5);
+        npc.setHealth(999F);
+        npc.setMaxHealth(999);
+        if (npc.getHealth() <= 10F) {
+            npc.setHealth(999F);
+            npc.setMaxHealth(999);
         }
-        return parseBufferedImage(image);
     }
 
-    private static byte[] parseBufferedImage(BufferedImage image) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-        for(int y = 0; y < image.getHeight(); ++y) {
-            for(int x = 0; x < image.getWidth(); ++x) {
-                Color color = new Color(image.getRGB(x, y), true);
-                outputStream.write(color.getRed());
-                outputStream.write(color.getGreen());
-                outputStream.write(color.getBlue());
-                outputStream.write(color.getAlpha());
-            }
-        }
-
-        image.flush();
-        return outputStream.toByteArray();
+    public void move(Player player) {
+        npc.teleport(new Position(player.x, player.y + 1, player.z, player.level));
     }
 }

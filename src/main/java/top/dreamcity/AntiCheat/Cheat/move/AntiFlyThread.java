@@ -3,9 +3,11 @@ package top.dreamcity.AntiCheat.Cheat.move;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.math.Vector3;
-import cn.nukkit.utils.TextFormat;
 
 import java.util.HashMap;
+
+import static cn.nukkit.utils.TextFormat.AQUA;
+import static cn.nukkit.utils.TextFormat.RED;
 
 /**
  * Copyright © 2016 WetABQ&DreamCityAdminGroup All right reserved.
@@ -23,7 +25,7 @@ import java.util.HashMap;
 public class AntiFlyThread implements Runnable {
 
     private Thread thread;
-    private HashMap<String,Integer> Flycount = new HashMap<>();
+    private HashMap<String, Integer> Flycount = new HashMap<>();
 
     public AntiFlyThread() {
         thread = new Thread(this);
@@ -34,14 +36,14 @@ public class AntiFlyThread implements Runnable {
         while (true) {
             try {
                 for (Player player : Server.getInstance().getOnlinePlayers().values()) {
-                    if(!player.isOnGround()){
+                    if (!player.isOnGround()) {
                         double y = player.y;
                         boolean flag = false;
-                        thread.sleep(5*1000);
-                        if(player.y == y){
+                        thread.sleep(5 * 1000);
+                        if (player.y == y) {
                             flag = true;
                         }
-                        if(player.y >= y) {
+                        if (player.y >= y) {
                             y = player.y;
                             if (player.move(0, -3, 0)) {
                                 if (player.move(0, -3, 0)) {
@@ -51,16 +53,16 @@ public class AntiFlyThread implements Runnable {
                                 }
                             }
                         }
-                        if(flag){
-                            player.setMotion(new Vector3(0,0,0));
+                        if (flag) {
+                            player.setMotion(new Vector3(0, 0, 0));
                             player.teleport(player);
-                            if(Flycount.containsKey(player.getName())){
-                                if(Flycount.get(player.getName()) > 5){
-                                    player.kick(TextFormat.AQUA+"Cheat Type: "+TextFormat.RED+"Fly");
+                            if (Flycount.containsKey(player.getName())) {
+                                if (Flycount.get(player.getName()) > 5) {
+                                    player.kick(AQUA + "Cheat Type: " + RED + "Fly");
                                 }
-                                Flycount.put(player.getName(),Flycount.get(player.getName())+1);
-                            }else{
-                                Flycount.put(player.getName(),1);
+                                Flycount.put(player.getName(), Flycount.get(player.getName()) + 1);
+                            } else {
+                                Flycount.put(player.getName(), 1);
                             }
                         }
                     }

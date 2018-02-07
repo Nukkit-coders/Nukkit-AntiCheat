@@ -6,7 +6,10 @@ import cn.nukkit.entity.Entity;
 import cn.nukkit.entity.EntityHuman;
 import cn.nukkit.level.Position;
 import cn.nukkit.math.Vector3;
-import cn.nukkit.nbt.tag.*;
+import cn.nukkit.nbt.tag.CompoundTag;
+import cn.nukkit.nbt.tag.DoubleTag;
+import cn.nukkit.nbt.tag.FloatTag;
+import cn.nukkit.nbt.tag.ListTag;
 
 /**
  * Copyright © 2016 WetABQ&DreamCityAdminGroup All right reserved.
@@ -21,21 +24,25 @@ import cn.nukkit.nbt.tag.*;
  * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
  * ||||
  */
-public class NPC extends EntityHuman{
+public class NPC extends EntityHuman {
 
-    public NPC(Position pos, byte[] skin,Player player) {
-        super(pos.getLevel().getChunk((int) pos.getX() >> 4, (int) pos.getZ() >> 4), getEntityNBT(pos,skin));
+    public NPC(Position pos, byte[] skin, Player player) {
+        super(pos.getLevel().getChunk((int) pos.getX() >> 4, (int) pos.getZ() >> 4), getEntityNBT(pos, skin));
         this.setDataFlag(Entity.DATA_FLAGS, Entity.DATA_FLAG_ALWAYS_SHOW_NAMETAG, false);
         this.setDataFlag(Entity.DATA_FLAGS, Entity.DATA_FLAG_CAN_SHOW_NAMETAG, false);
-        this.setHealth(999);
+        this.setHealth(999F);
         this.setMaxHealth(999);
         this.setMovementSpeed(0);
-        if(!this.hasSpawned.containsValue(player)){
+        if (!this.hasSpawned.containsValue(player)) {
             this.spawnTo(player);
+        }
+        if (this.getHealth() <= 5F) {
+            this.setHealth(999F);
+            this.setMaxHealth(999);
         }
     }
 
-    private static CompoundTag getEntityNBT(Vector3 position,byte[] skin) {
+    private static CompoundTag getEntityNBT(Vector3 position, byte[] skin) {
         return new CompoundTag()
                 .putList(new ListTag<DoubleTag>("Pos")
                         .add(new DoubleTag("", position.x))
@@ -48,10 +55,10 @@ public class NPC extends EntityHuman{
                 .putList(new ListTag<FloatTag>("Rotation")
                         .add(new FloatTag("", 0))
                         .add(new FloatTag("", 0)))
-                .putCompound("Skin",new CompoundTag()
+                .putCompound("Skin", new CompoundTag()
                         .putByteArray("Data", skin)
-                        .putString("ModelId","Standard_Steve")
+                        .putString("ModelId", "Standard_Steve")
                 )
-                .putString("NameTag","xxx");
+                .putString("NameTag", "xxx");
     }
 }

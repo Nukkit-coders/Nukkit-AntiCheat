@@ -16,6 +16,7 @@ import cn.nukkit.Player;
  * ||||
  */
 public class AntiFly extends Move {
+
     public AntiFly(Player player) {
         super(player);
     }

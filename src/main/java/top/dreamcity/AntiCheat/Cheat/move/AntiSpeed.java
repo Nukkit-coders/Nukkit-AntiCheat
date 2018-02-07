@@ -21,6 +21,7 @@ import top.dreamcity.AntiCheat.Event.PlayerCheating;
  * ||||
  */
 public class AntiSpeed extends Move {
+
     public AntiSpeed(Player player) {
         super(player);
     }
@@ -40,19 +41,19 @@ public class AntiSpeed extends Move {
         MasterConfig config = AntiCheatAPI.getInstance().getMasterConfig();
         if (playerMoveSpeed >= config.getMaxMoveSpeed()) {
             if (!player.hasEffect(1)) {
-                if(config.getAntiSpeedPingCheck()) {
+                if (config.getAntiSpeedPingCheck()) {
                     if (player.getPing() < config.getPingNoCheckValue()) {
                         flag = true;
                     }
-                }else{
+                } else {
                     flag = true;
                 }
             } else if (playerMoveSpeed >= AntiCheatAPI.getInstance().getMasterConfig().getMaxMoveSpeed() + 1.5) {
-                if(config.getAntiSpeedPingCheck()) {
+                if (config.getAntiSpeedPingCheck()) {
                     if (player.getPing() < config.getPingNoCheckValue()) {
                         flag = true;
                     }
-                }else{
+                } else {
                     flag = true;
                 }
             }

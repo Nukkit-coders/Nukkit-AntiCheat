@@ -21,12 +21,20 @@ import java.util.HashMap;
  */
 public class CheckChatThread implements Runnable {
 
-    private Thread thread;
     private static HashMap<String, Integer> playerChat = new HashMap<>();
+    private Thread thread;
 
     public CheckChatThread() {
         thread = new Thread(this);
         thread.start();
+    }
+
+    public static void addPlayer(String name) {
+        playerChat.put(name, AntiCheatAPI.getInstance().getMasterConfig().getChatSec());
+    }
+
+    public static boolean hasPlayer(String name) {
+        return playerChat.containsKey(name);
     }
 
     public void run() {
@@ -46,14 +54,6 @@ public class CheckChatThread implements Runnable {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static void addPlayer(String name) {
-        playerChat.put(name, AntiCheatAPI.getInstance().getMasterConfig().getChatSec());
-    }
-
-    public static boolean hasPlayer(String name) {
-        return playerChat.containsKey(name);
     }
 
 }

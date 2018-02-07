@@ -16,9 +16,10 @@ import cn.nukkit.Player;
  * ||||
  */
 public abstract class AntiCheat {
+
     protected Player player;
 
-    public AntiCheat(Player player){
+    public AntiCheat(Player player) {
         this.player = player;
     }
 
@@ -27,7 +28,7 @@ public abstract class AntiCheat {
     abstract public boolean isCheat();
 
 
-    public enum CheatType{
+    public enum CheatType {
         SPEED("speed"),
         BOUNDING_BOX("bb"),
         FLY("fly"),
@@ -38,7 +39,7 @@ public abstract class AntiCheat {
 
         private String typeName;
 
-        CheatType(String typeName){
+        CheatType(String typeName) {
             this.typeName = typeName;
         }
 
@@ -56,7 +57,7 @@ public abstract class AntiCheat {
         }
 
         @Override
-        public String toString(){
+        public String toString() {
             return this.getTypeName();
         }
 
