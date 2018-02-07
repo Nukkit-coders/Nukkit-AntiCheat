@@ -18,9 +18,9 @@ import top.dreamcity.AntiCheat.Cheat.AntiCheat;
  */
 public abstract class Move extends AntiCheat {
 
-    protected float playerMoveSpeed;
+    float playerMoveSpeed;
 
-    public Move(Player player) {
+    Move(Player player) {
         super(player);
         playerMoveSpeed = AntiSpeedThread.getMove(player.getName());
     }

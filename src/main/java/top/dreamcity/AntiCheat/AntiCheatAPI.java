@@ -2,6 +2,7 @@ package top.dreamcity.AntiCheat;
 
 import cn.nukkit.Player;
 import top.dreamcity.AntiCheat.Config.MasterConfig;
+import top.dreamcity.AntiCheat.Cheat.AntiCheat.CheatType;
 
 /**
  * Copyright © 2017 WetABQ&DreamCityAdminGroup All right reserved.
@@ -24,6 +25,6 @@ public interface AntiCheatAPI {
 
     MasterConfig getMasterConfig();
 
-    void addRecord(Player player, top.dreamcity.AntiCheat.Cheat.AntiCheat.CheatType cheatType);
+    void addRecord(Player player, CheatType cheatType);
 
 }

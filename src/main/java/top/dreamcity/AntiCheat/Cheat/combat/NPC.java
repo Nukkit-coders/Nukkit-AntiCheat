@@ -24,9 +24,9 @@ import cn.nukkit.nbt.tag.ListTag;
  * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
  * ||||
  */
-public class NPC extends EntityHuman {
+class NPC extends EntityHuman {
 
-    public NPC(Position pos, byte[] skin, Player player) {
+    NPC(Position pos, byte[] skin, Player player) {
         super(pos.getLevel().getChunk((int) pos.getX() >> 4, (int) pos.getZ() >> 4), getEntityNBT(pos, skin));
         this.setDataFlag(Entity.DATA_FLAGS, Entity.DATA_FLAG_ALWAYS_SHOW_NAMETAG, false);
         this.setDataFlag(Entity.DATA_FLAGS, Entity.DATA_FLAG_CAN_SHOW_NAMETAG, false);

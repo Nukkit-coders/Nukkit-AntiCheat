@@ -17,9 +17,9 @@ import top.dreamcity.AntiCheat.Cheat.AntiCheat;
  * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
  * ||||
  */
-public abstract class Combat extends AntiCheat {
+abstract class Combat extends AntiCheat {
 
-    public Combat(Player player) {
+    Combat(Player player) {
         super(player);
     }
 

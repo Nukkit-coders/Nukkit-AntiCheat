@@ -2,7 +2,7 @@ package top.dreamcity.AntiCheat.Cheat.move;
 
 import cn.nukkit.Player;
 import cn.nukkit.utils.TextFormat;
-import top.dreamcity.AntiCheat.AntiCheatAPI;
+import top.dreamcity.AntiCheat.AntiCheat;
 import top.dreamcity.AntiCheat.Cheat.Report;
 
 /**
@@ -20,11 +20,9 @@ import top.dreamcity.AntiCheat.Cheat.Report;
  */
 public class ReportFlyThread extends Report implements Runnable {
 
-    private Thread thread;
-
     public ReportFlyThread(Player player) {
         super(player);
-        this.thread = new Thread(this);
+        Thread thread = new Thread(this);
         thread.start();
     }
 
@@ -36,7 +34,7 @@ public class ReportFlyThread extends Report implements Runnable {
                 if (player.isOnGround()) {
                     if (player.getLevel().getBlock(player.add(0, -1, 0)).getId() == 0 && player.getLevel().getBlock(player).getId() != 0) {
                         double y = player.y;
-                        thread.sleep(5 * 1000);
+                        Thread.sleep(5 * 1000);
                         if (player.getLevel().getBlock(player.add(0, -1, 0)).getId() == 0 && player.getLevel().getBlock(player).getId() != 0 && y <= player.y) {
                             flag = true;
                         } else {
@@ -52,7 +50,7 @@ public class ReportFlyThread extends Report implements Runnable {
                     }
                 } else {
                     double y = player.y;
-                    thread.sleep(5 * 1000);
+                    Thread.sleep(5 * 1000);
                     //Player Jump : Normal[1.25] Jump_Effect_Level1[1+15/16] Jump_Effect_Level2[2.5]
                     if (player.y == y) {
                         flag = true;
@@ -70,8 +68,8 @@ public class ReportFlyThread extends Report implements Runnable {
                     player.kick(TextFormat.AQUA + "Cheat Type: " + TextFormat.RED + "Fly");
                 }
             }
-            AntiCheatAPI.getInstance().reportPlayer.remove(player.getName());
-            AntiCheatAPI.getInstance().reportThread.remove(player.getName());
+            AntiCheat.reportPlayer.remove(player.getName());
+            AntiCheat.reportThread.remove(player.getName());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

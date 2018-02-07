@@ -2,9 +2,11 @@ package top.dreamcity.AntiCheat.Config;
 
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
+import jline.internal.Nullable;
 import top.dreamcity.AntiCheat.AntiCheat;
 import top.dreamcity.AntiCheat.AntiCheatAPI;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import java.util.ArrayList;
 
 /**
@@ -63,7 +65,7 @@ public class MasterConfig {
         init();
     }
 
-    public void init() {
+    private void init() {
         if (!isEmpty) {
             antiSpeed = config.getBoolean("antiSpeed");
             checkBB = config.getBoolean("checkBB");
@@ -78,14 +80,14 @@ public class MasterConfig {
             inAirTimeCheck = config.getInt("inAirTimeCheck");
             chatSec = config.getInt("chatSec");
             checkKillAuraCPS = config.getInt("checkKillAuraCPS");
-            SensitiveWords = (ArrayList) config.get("SensitiveWords");
+            SensitiveWords = (ArrayList<String>) config.get("SensitiveWords");
             SkinPath = config.getString("RobotSkinPath");
         } else {
             spawnDefaultConfig();
         }
     }
 
-    public void spawnDefaultConfig() {
+    private void spawnDefaultConfig() {
         AntiCheat.getInstance().getLogger().notice("Start spawning default config.");
         antiSpeed = true;
         checkBB = true;
@@ -107,7 +109,7 @@ public class MasterConfig {
         save();
     }
 
-    public void save() {
+    private void save() {
         try {
             config.put("antiSpeed", antiSpeed);
             config.put("antiSpeedPingCheck", antiSpeedPingCheck);

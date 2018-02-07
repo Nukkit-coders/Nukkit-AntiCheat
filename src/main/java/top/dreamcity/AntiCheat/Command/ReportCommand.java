@@ -6,7 +6,6 @@ import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.utils.TextFormat;
-import top.dreamcity.AntiCheat.AntiCheatAPI;
 import top.dreamcity.AntiCheat.Cheat.AntiCheat;
 import top.dreamcity.AntiCheat.Cheat.move.ReportFlyThread;
 import top.dreamcity.AntiCheat.Cheat.move.ReportSpeedThread;
@@ -83,11 +82,11 @@ public class ReportCommand extends Command {
                     sender.sendMessage(TextFormat.RED + "Unknown type! For example: fly f 飞行 s sp speed 速度 加速");
                     return true;
             }
-            if (AntiCheatAPI.getInstance().reportPlayer.containsKey(p.getName())) {
+            if (top.dreamcity.AntiCheat.AntiCheat.reportPlayer.containsKey(p.getName())) {
                 sender.sendMessage(TextFormat.GREEN + "Please do not repeat the report");
                 return true;
             }
-            AntiCheatAPI.getInstance().reportPlayer.put(p.getName(), cheatType);
+            top.dreamcity.AntiCheat.AntiCheat.reportPlayer.put(p.getName(), cheatType);
             Server.getInstance().getLogger().warning("Player " + sender.getName() + " report " + p.getName() + " cheat type:" + cheatType.getTypeName());
             sender.sendMessage(TextFormat.GREEN + "You successfully reported the player " + p.getName() + " cheat type " + cheatType.getTypeName());
         } else {
@@ -100,14 +99,14 @@ public class ReportCommand extends Command {
     private void addReportThread(Player player, AntiCheat.CheatType type) {
         switch (type.getTypeName()) {
             case "fly":
-                AntiCheatAPI.getInstance().reportThread.put(player.getName(), new ReportFlyThread(player));
+                top.dreamcity.AntiCheat.AntiCheat.reportThread.put(player.getName(), new ReportFlyThread(player));
                 break;
             case "speed":
-                AntiCheatAPI.getInstance().reportThread.put(player.getName(), new ReportSpeedThread(player));
+                top.dreamcity.AntiCheat.AntiCheat.reportThread.put(player.getName(), new ReportSpeedThread(player));
                 break;
             default:
-                AntiCheatAPI.getInstance().reportThread.put(player.getName(), new ReportFlyThread(player));
-                AntiCheatAPI.getInstance().reportThread.put(player.getName(), new ReportSpeedThread(player));
+                top.dreamcity.AntiCheat.AntiCheat.reportThread.put(player.getName(), new ReportFlyThread(player));
+                top.dreamcity.AntiCheat.AntiCheat.reportThread.put(player.getName(), new ReportSpeedThread(player));
                 break;
         }
     }

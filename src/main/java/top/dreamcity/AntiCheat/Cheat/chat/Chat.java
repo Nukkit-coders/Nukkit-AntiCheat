@@ -19,7 +19,7 @@ import top.dreamcity.AntiCheat.Cheat.AntiCheat;
  */
 public abstract class Chat extends AntiCheat {
 
-    protected String message;
+    public String message;
 
     public Chat(Player player, String message) {
         super(player);

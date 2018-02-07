@@ -28,6 +28,7 @@ import java.io.IOException;
  * ||||
  */
 public class AntiAutoAim extends Combat {
+
     private NPC npc;
 
     public AntiAutoAim(Player player) {

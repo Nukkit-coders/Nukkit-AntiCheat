@@ -23,6 +23,8 @@ import java.util.ArrayList;
  */
 public class CheckWords extends Chat {
 
+    Chat chat;
+
     public CheckWords(Player player, String message) {
         super(player, message);
     }
@@ -39,7 +41,7 @@ public class CheckWords extends Chat {
         if (event.isCancelled()) return false;
         ArrayList<String> list = AntiCheatAPI.getInstance().getMasterConfig().getSensitiveWords();
         for (String sw : list) {
-            if (message.contains(sw)) {
+            if (chat.message.contains(sw)) {
                 PlayerCheating event2 = new PlayerCheating(player, getCheatType());
                 Server.getInstance().getPluginManager().callEvent(event2);
                 return !event.isCancelled();

@@ -24,10 +24,9 @@ public class AntiSpeedThread implements Runnable {
     private static HashMap<String, HashMap<Integer, Float>> moveSpeed = new HashMap<>();
     private static HashMap<String, Float> finalSpeed = new HashMap<>();
     private static HashMap<String, Position> positionHashMap = new HashMap<>();
-    private Thread thread;
 
     public AntiSpeedThread() {
-        thread = new Thread(this);
+        Thread thread = new Thread(this);
         thread.start();
     }
 
@@ -39,6 +38,7 @@ public class AntiSpeedThread implements Runnable {
         return finalSpeed.get(name);
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
         while (true) {
             try {
@@ -54,7 +54,7 @@ public class AntiSpeedThread implements Runnable {
                         positionHashMap.put(player.getName(), player.getPosition());
                     }
                 }
-                thread.sleep(50);
+                Thread.sleep(50);
             } catch (Exception e) {
                 e.printStackTrace();
             }

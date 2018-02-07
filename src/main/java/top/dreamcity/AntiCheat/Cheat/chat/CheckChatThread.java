@@ -22,10 +22,9 @@ import java.util.HashMap;
 public class CheckChatThread implements Runnable {
 
     private static HashMap<String, Integer> playerChat = new HashMap<>();
-    private Thread thread;
 
     public CheckChatThread() {
-        thread = new Thread(this);
+        Thread thread = new Thread(this);
         thread.start();
     }
 
@@ -37,6 +36,7 @@ public class CheckChatThread implements Runnable {
         return playerChat.containsKey(name);
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
         while (true) {
             try {
@@ -49,7 +49,7 @@ public class CheckChatThread implements Runnable {
                         }
                     }
                 }
-                thread.sleep(1000);
+                Thread.sleep(1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -16,6 +16,7 @@ import cn.nukkit.Player;
  * ||||
  */
 public class AntiKillAura extends Combat {
+
     public AntiKillAura(Player player) {
         super(player);
     }

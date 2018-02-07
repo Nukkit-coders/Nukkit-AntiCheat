@@ -24,14 +24,14 @@ import static cn.nukkit.utils.TextFormat.RED;
  */
 public class AntiFlyThread implements Runnable {
 
-    private Thread thread;
     private HashMap<String, Integer> Flycount = new HashMap<>();
 
     public AntiFlyThread() {
-        thread = new Thread(this);
+        Thread thread = new Thread(this);
         thread.start();
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     public void run() {
         while (true) {
             try {
@@ -39,7 +39,7 @@ public class AntiFlyThread implements Runnable {
                     if (!player.isOnGround()) {
                         double y = player.y;
                         boolean flag = false;
-                        thread.sleep(5 * 1000);
+                        Thread.sleep(5 * 1000);
                         if (player.y == y) {
                             flag = true;
                         }
