@@ -49,7 +49,6 @@ public class AntiSpeedThread extends Task {
                     positionHashMap.put(player.getName(), player.getPosition());
                 }
             }
-            Thread.sleep(50);
         } catch (Exception e) {
             e.printStackTrace();
         }

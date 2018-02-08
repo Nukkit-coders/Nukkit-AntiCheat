@@ -34,7 +34,6 @@ public class AntiFlyThread extends Task {
                 if (!player.isOnGround()) {
                     double y = player.y;
                     boolean flag = false;
-                    Thread.sleep(5 * 1000);
                     if (player.y == y) {
                         flag = true;
                     }
