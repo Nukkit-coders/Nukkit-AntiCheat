@@ -53,13 +53,13 @@ public class AntiCheat extends PluginBase implements AntiCheatAPI {
 
         initConfig();
 
-        initAntiThread();
-
         Server.getInstance().getCommandMap().register("", new ReportCommand());
 
         this.getServer().getPluginManager().registerEvents(new EventListener(), this);
 
         this.getServer().getScheduler().scheduleRepeatingTask(new AntiSpeedThread(), 20);
+        this.getServer().getScheduler().scheduleRepeatingTask(new CheckChatThread(), 20);
+        this.getServer().getScheduler().scheduleRepeatingTask(new AntiFlyThread(), 20);
 
         this.getLogger().notice("AntiCheat - Enable");
     }
@@ -67,12 +67,6 @@ public class AntiCheat extends PluginBase implements AntiCheatAPI {
     @Override
     public void onDisable() {
         this.getLogger().notice("AntiCheat - Disable");
-    }
-
-    private void initAntiThread() {
-        new AntiSpeedThread();
-        new CheckChatThread();
-        new AntiFlyThread();
     }
 
     private void initConfig() {

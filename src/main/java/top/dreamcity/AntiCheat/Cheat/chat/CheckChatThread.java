@@ -2,6 +2,7 @@ package top.dreamcity.AntiCheat.Cheat.chat;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
+import cn.nukkit.scheduler.Task;
 import top.dreamcity.AntiCheat.AntiCheatAPI;
 
 import java.util.HashMap;
@@ -19,14 +20,9 @@ import java.util.HashMap;
  * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
  * ||||
  */
-public class CheckChatThread implements Runnable {
+public class CheckChatThread extends Task {
 
     private static HashMap<String, Integer> playerChat = new HashMap<>();
-
-    public CheckChatThread() {
-        Thread thread = new Thread(this);
-        thread.start();
-    }
 
     public static void addPlayer(String name) {
         playerChat.put(name, AntiCheatAPI.getInstance().getMasterConfig().getChatSec());
@@ -36,23 +32,21 @@ public class CheckChatThread implements Runnable {
         return playerChat.containsKey(name);
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
-    public void run() {
-        while (true) {
-            try {
-                for (Player player : Server.getInstance().getOnlinePlayers().values()) {
-                    if (playerChat.containsKey(player.getName())) {
-                        if (playerChat.get(player.getName()) > 0) {
-                            playerChat.put(player.getName(), playerChat.get(player.getName()) - 1);
-                        } else {
-                            playerChat.remove(player.getName());
-                        }
+    @Override
+    public void onRun(int i) {
+        try {
+            for (Player player : Server.getInstance().getOnlinePlayers().values()) {
+                if (playerChat.containsKey(player.getName())) {
+                    if (playerChat.get(player.getName()) > 0) {
+                        playerChat.put(player.getName(), playerChat.get(player.getName()) - 1);
+                    } else {
+                        playerChat.remove(player.getName());
                     }
                 }
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
