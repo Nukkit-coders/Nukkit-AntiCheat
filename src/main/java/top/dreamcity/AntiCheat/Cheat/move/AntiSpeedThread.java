@@ -3,6 +3,7 @@ package top.dreamcity.AntiCheat.Cheat.move;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.level.Position;
+import cn.nukkit.scheduler.Task;
 
 import java.util.HashMap;
 
@@ -19,16 +20,11 @@ import java.util.HashMap;
  * ||     |||      |||||||     |||||  |||       |||| ||||||||      |||||    |
  * ||||
  */
-public class AntiSpeedThread implements Runnable {
+public class AntiSpeedThread extends Task {
 
     private static HashMap<String, HashMap<Integer, Float>> moveSpeed = new HashMap<>();
     private static HashMap<String, Float> finalSpeed = new HashMap<>();
     private static HashMap<String, Position> positionHashMap = new HashMap<>();
-
-    public AntiSpeedThread() {
-        Thread thread = new Thread(this);
-        thread.start();
-    }
 
     public static void setFinalMove(String name, float speed) {
         finalSpeed.put(name, speed);
@@ -38,26 +34,24 @@ public class AntiSpeedThread implements Runnable {
         return finalSpeed.get(name);
     }
 
-    @SuppressWarnings("InfiniteLoopStatement")
-    public void run() {
-        while (true) {
-            try {
-                for (Player player : Server.getInstance().getOnlinePlayers().values()) {
-                    if (positionHashMap.containsKey(player.getName())) {
-                        Position from = positionHashMap.get(player.getName());
-                        Position to = player.getPosition();
-                        float move = ((float) Math.sqrt(Math.pow(from.x - to.x, 2) + Math.pow(from.z - to.z, 2)));
-                        putMove(player.getName(), move);
-                        positionHashMap.put(player.getName(), player.getPosition());
-                    } else {
-                        putMove(player.getName(), 0F);
-                        positionHashMap.put(player.getName(), player.getPosition());
-                    }
+    @Override
+    public void onRun(int i) {
+        try {
+            for (Player player : Server.getInstance().getOnlinePlayers().values()) {
+                if (positionHashMap.containsKey(player.getName())) {
+                    Position from = positionHashMap.get(player.getName());
+                    Position to = player.getPosition();
+                    float move = ((float) Math.sqrt(Math.pow(from.x - to.x, 2) + Math.pow(from.z - to.z, 2)));
+                    putMove(player.getName(), move);
+                    positionHashMap.put(player.getName(), player.getPosition());
+                } else {
+                    putMove(player.getName(), 0F);
+                    positionHashMap.put(player.getName(), player.getPosition());
                 }
-                Thread.sleep(50);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+            Thread.sleep(50);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
