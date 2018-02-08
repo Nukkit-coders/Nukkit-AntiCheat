@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34385938-a8ef-479b-a082-e309270924d6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/AntiCheat.java" afterPath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/AntiCheat.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/Cheat/chat/CheckChatThread.java" afterPath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/Cheat/chat/CheckChatThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/Cheat/move/AntiFlyThread.java" afterPath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/Cheat/move/AntiFlyThread.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/Cheat/move/AntiSpeedThread.java" afterPath="$PROJECT_DIR$/src/main/java/top/dreamcity/AntiCheat/Cheat/move/AntiSpeedThread.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -383,7 +380,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../NycuRO-FactionsCore" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
     <UpdatedFiles>
@@ -399,7 +396,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/README.md</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -407,6 +403,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.gitignore</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
