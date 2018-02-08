@@ -24,7 +24,7 @@ AntiCheat  - Nukkit plugin
 antiSpeed: true
 antiSpeedPingCheck: true
 pingNoCheckValue: 25
-maxMoveSpeed: 6.0
+maxMoveSpeed: 10.24
 checkBB: true
 antiFly: true
 inAirTimeCheck: 5
