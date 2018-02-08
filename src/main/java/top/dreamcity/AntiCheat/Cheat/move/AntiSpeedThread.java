@@ -7,6 +7,8 @@ import cn.nukkit.scheduler.Task;
 
 import java.util.HashMap;
 
+import static cn.nukkit.utils.TextFormat.GREEN;
+
 /**
  * Copyright © 2017 WetABQ&DreamCityAdminGroup All right reserved.
  * Welcome to DreamCity Server Address:dreamcity.top:19132
@@ -102,7 +104,7 @@ public class AntiSpeedThread extends Task {
             fs = fs / 8;
             fs = fs * 10;
             finalSpeed.put(name, fs);
-            //Server.getInstance().getPlayer(name).sendPopup(TextFormat.GREEN+"Speed:"+ fs+"                             \n\n\n");
+            //Server.getInstance().getPlayer(name).sendPopup(GREEN+"Speed:"+ fs+"                             \n\n\n");
             move.put(1, -1F);
             move.put(2, -1F);
             move.put(3, -1F);
