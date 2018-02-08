@@ -36,7 +36,7 @@ class NPC extends EntityHuman {
         if (!this.hasSpawned.containsValue(player)) {
             this.spawnTo(player);
         }
-        if (this.getHealth() <= 5F) {
+        if (this.getHealth() <= 10F) {
             this.setHealth(999F);
             this.setMaxHealth(999);
         }

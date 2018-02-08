@@ -103,7 +103,7 @@ public class AntiAutoAim extends Combat {
         byte[] skin = image(AntiCheatAPI.getInstance().getMasterConfig().getSkinPath());
         NPC npc = new NPC(new Position(player.getX(), player.getY(), player.getZ(), player.getLevel()), skin, player);
         npc.setNameTag("");
-        npc.setScale(0.1F);
+        npc.setScale(0.03F);
         this.npc = npc;
         npc.setHealth(999F);
         npc.setMaxHealth(999);

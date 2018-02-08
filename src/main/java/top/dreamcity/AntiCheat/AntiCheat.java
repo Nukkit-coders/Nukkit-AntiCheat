@@ -57,7 +57,7 @@ public class AntiCheat extends PluginBase implements AntiCheatAPI {
 
         this.getServer().getPluginManager().registerEvents(new EventListener(), this);
 
-        this.getServer().getScheduler().scheduleRepeatingTask(new AntiSpeedThread(), 20 * 5);
+        this.getServer().getScheduler().scheduleRepeatingTask(new AntiSpeedThread(), 20);
         this.getServer().getScheduler().scheduleRepeatingTask(new CheckChatThread(), 20);
         this.getServer().getScheduler().scheduleRepeatingTask(new AntiFlyThread(), 20 * 5);
 
