@@ -49,3 +49,4 @@ RobotSkinPath: xxxx/plugins/AntiCheat/Steve.png
 ### Author:
 
 - [WetABQ](https://github.com/WetABQ)
+- [NycuRO](https://github.com/NycuRO)
